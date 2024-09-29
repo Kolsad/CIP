@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Разметка видеоконтента</title>
+    <link rel="icon" href="/static/images/favicons.png" type="image/png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container" id="main-content">
+    <h1>Разметка видеоконтента</h1>
+    <form action="" method="post" enctype="multipart/form-data" onsubmit="showPopup(); return false;">
+        <input type="text" name="video_link" placeholder="Введите ссылку на видео" size="30" maxlength="90">
+        <br>
+        <input type="submit" value="Загрузить / Отправить">
+    </form>
+</div>
+
+<div class="logo-container">
+    <img src="/static/images/gaz_logo.png" alt="Логотип">
+</div>
+
+<div id="popup-overlay" class="popup-overlay">
+    <div class="popup-content">
+        <div class="json-wrapper">
+            <div class="copy-btn" onclick="copyJson()">
+                <div class="copy-icon-container">
+                    <img src="/static/images/paste.png" alt="Копировать" class="copy-icon">
+                </div>
+            </div>
+            <pre id="json-content"></pre>
+            <div id="copy-notification-container"></div>
+        </div>
+        <button class="popup-close-btn" onclick="closePopup()">Закрыть</button>
+    </div>
+</div>
+
+<script>
+    function showPopup() {
+        const overlay = document.getElementById('popup-overlay');
+        const content = document.getElementById('main-content');
+        overlay.style.display = 'flex';
+        content.classList.add('blurred');
+
+        const jsonData = {
+            "name": "Example Video",
+            "type": "mp4",
+            "size": "15MB",
+            "duration": "5min"
+        };
+
+        const jsonContent = document.getElementById('json-content');
+        jsonContent.textContent = JSON.stringify(jsonData, null, 4);
+    }
+
+    function closePopup() {
+        const overlay = document.getElementById('popup-overlay');
+        const content = document.getElementById('main-content');
+        overlay.style.display = 'none';
+        content.classList.remove('blurred');
+    }
+
+    function copyJson() {
+        const jsonContent = document.getElementById('json-content');
+        const jsonText = jsonContent.textContent;
+
+        navigator.clipboard.writeText(jsonText).then(() => {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = 'Скопировано!';
+            const container = document.getElementById('copy-notification-container');
+            container.appendChild(notification);
+
+            notification.style.display = 'block';
+
+            setTimeout(() => {
+                notification.classList.add('fade-out');
+                setTimeout(() => {
+                    container.removeChild(notification);
+                }, 600);
+            }, 2000);
+        }).catch((err) => {
+            console.error('Не удалось скопировать: ', err);
+        });
+    }
+</script>
+</body>
+</html>
