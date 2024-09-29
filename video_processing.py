@@ -33,8 +33,7 @@ def process_video(video_url, model, model_ocr, emotion_model):
 
     info = yt_dlp.YoutubeDL(ydl_opts).extract_info(video_url, download=False)
     video_path = info["formats"][0]["manifest_url"]
-    print(info)
-    return
+
     video_cv = cv2.VideoCapture(video_path)
     video_cv.set(3, 1280)
     video_cv.set(4, 700)
