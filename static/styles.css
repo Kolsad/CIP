@@ -1,0 +1,237 @@
+@keyframes wave {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+@keyframes gradientButton {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-image: 
+        linear-gradient(135deg, rgba(240, 240, 240, 0.8) 25%, transparent 25%), 
+        linear-gradient(225deg, rgba(240, 240, 240, 0.8) 25%, transparent 25%), 
+        linear-gradient(45deg, rgba(240, 240, 240, 0.8) 25%, transparent 25%), 
+        linear-gradient(315deg, rgba(240, 240, 240, 0.8) 25%, transparent 25%);
+    background-size: 50px 50px;
+    animation: wave 8s linear infinite;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+@keyframes diamond-move {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    z-index: 1;
+}
+
+.blurred {
+    filter: blur(8px);
+    transition: filter 0.3s ease;
+}
+
+h1 {
+    color: #0079C2;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+input[type="text"] {
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #0079C2;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background: linear-gradient(90deg, #0079C2, #0091E6, #00AEEF, #0091E6, #0079C2);
+    background-size: 200% 200%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    animation: gradientButton 5s ease infinite;
+}
+
+input[type="submit"]:hover {
+    background-position: 100% 50%;
+}
+
+input[type="text"]::placeholder {
+    color: #999;
+}
+
+.logo-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none;
+}
+
+.logo-container img {
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.popup-content pre {
+    overflow-y: auto;
+    max-height: 200px;
+    background-color: #293133;
+    color: #d7d7d7;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.blurred {
+    filter: blur(8px);
+    transition: filter 0.3s ease;
+}
+
+.json-wrapper {
+    position: relative;
+}
+
+.copy-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.copy-icon-container {
+    background-color: #0079C2;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.copy-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.popup-close-btn {
+    background-color: #0079C2;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.popup-close-btn:hover {
+    background-color: #0091E6;
+}
+
+.notification {
+    display: none;
+    background-color: #4b5050;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fade-in 0.3s forwards, fade-out 0.6s forwards;
+}
+
+.fade-out {
+    animation: fade-out 0.6s forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
